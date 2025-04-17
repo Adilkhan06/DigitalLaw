@@ -1,0 +1,17 @@
+{% extends 'terms/base.html' %}
+
+{% block title %}{{ term.term_name }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h2>{{ term.term_name }}</h2>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ term.term_description|linebreaks }}</p>
+    </div>
+    <div class="card-footer text-muted">
+        <a href="{% url 'search' %}" class="btn btn-secondary">Вернуться к поиску</a>
+    </div>
+</div>
+{% endblock %}
