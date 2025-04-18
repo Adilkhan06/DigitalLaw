@@ -1,0 +1,36 @@
+{% extends 'terms/base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Adilet Termin KZ — Заңи терминдер глоссарийі</h1>
+    <p class="lead">Қош келдіңіз!
+Adilet Termin KZ — Қазақстан Республикасының Азаматтық кодексінің қазақша және орысша терминдерді түсінуге арналған интерактивті платформа.
+</p>
+
+    <div class="row align-items-center mb-5">
+        <div class="col-md-6">
+            <img src="https://res.cloudinary.com/dovsfhgs3/image/upload/v1744993238/Изображение_WhatsApp_2025-04-18_в_17.15.57_52a98b55_hj7h4w.jpg"
+                 alt="Біз туралы"
+                 class="img-fluid rounded shadow">
+        </div>
+        <div class="col-md-6">
+            <h2>Біз не ұсынамыз?</h2>
+            <br>
+    <p>•	Қазақстан Республикасының Азаматтық Кодексінің терминдердің нақты анықтамалары</p>
+    <p>•	Құқықтық баптарға сілтемелер мен түсініктемелер</p>
+    <p>•	Алфавиттік және категориялық іздеу</p>
+    <br>
+    <p>Біздің мақсатымыз — құқық саласындағы білімді жеңіл әрі қолжетімді ету.</p>
+    <p>Терминді іздеуден бастаңыз!</p>
+            <br>
+    <a class="btn btn-primary btn-lg" href="{% url 'search' %}" role="button">Термин іздеу</a>
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}

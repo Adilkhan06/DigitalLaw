@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adilet Termin KZ - {% block title %}{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content-wrap {
+            flex: 1;
+        }
+
+    main {
+        flex: 1;
+    }
+
+    footer {
+        position: relative;
+        z-index: 1;
+    }
+        /* Анимация выпадающего списка */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.list-group {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Стиль для активного поиска */
+.search-active {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-radius: 24px;
+}
+.search-results-container {
+    position: absolute;
+    width: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+    background: white;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: -1px; /* Убираем зазор между полем и списком */
+}
+
+/* Стили для скроллбара */
+.search-results-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.search-results-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 0 0 8px 0;
+}
+
+.search-results-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.search-results-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+    </style>
+</head>
+<body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">Adilet Termin KZ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Басты бет</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{% url 'google_search' %}">
+                        Терминдерді іздеу
+                    </a>
+                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'search' %}">Терминдер тізімі</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">Біз жайлы ақпарат</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Кері байланыс</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'references' %}">Пайданылған әдебиеттер</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'reviews' %}">Қолданушылардың пікірлері</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content-wrap">
+        <div class="container mt-4 mb-4">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-3 mt-auto">
+        <div class="container text-center">
+            <p class="mb-0">&copy; {% now "Y" %} Adilet Termin KZ.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+
+</body>
+</html>

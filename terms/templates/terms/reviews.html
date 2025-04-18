@@ -1,0 +1,76 @@
+{% extends 'terms/base.html' %}
+{% load static %}
+
+{% block title %}Қолданушылардың пікірлері{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Adilet Termin KZ</h1>
+    <p class="lead text-center mb-5">Заң терминдерін түсінікті әрі қолжетімді ететін бірегей жоба. Біз қолданушыларымыздың пікірлерін бағалаймыз:</p>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+        {% for review in reviews %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ review.name }}, {{ review.profession }}</h5>
+                    <blockquote class="blockquote mb-0">
+                        <p>"{{ review.text }}"</p>
+                    </blockquote>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <small class="text-muted">{{ review.created_at|date:"d.m.Y" }}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% if messages %}
+    {% for message in messages %}
+        {% if 'reviews' in message.extra_tags %}
+            <div class="alert alert-success alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+    <!-- Форма для отзывов -->
+<div class="card border-primary mt-5">
+    <div class="card-header bg-primary text-white">
+        <h4>Пікіріңізді қалдырыңыз</h4>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.name }}
+            </div>
+            <div class="mb-3">
+                {{ form.profession }}
+            </div>
+            <div class="mb-3">
+                {{ form.text }}
+            </div>
+            <button type="submit" class="btn btn-primary">Жіберу</button>
+        </form>
+    </div>
+</div>
+
+    <p class="mt-4 text-center">Сіз де пікіріңізді қалдырыңыз — біз үшін маңызды!</p>
+</div>
+
+<style>
+    .card {
+        transition: transform 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    blockquote {
+        font-style: italic;
+        border-left: 3px solid #0d6efd;
+        padding-left: 1rem;
+    }
+</style>
+{% endblock %}
